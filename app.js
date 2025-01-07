@@ -13,6 +13,7 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const reg=document.getElementById("reg");
 const authBtn = document.getElementById("auth-btn");
+const Btn = document.getElementById("b");
 const userNameEl = document.getElementById("user-name");
 
 // Function to update the UI based on authentication state
@@ -59,6 +60,34 @@ authBtn.addEventListener("click", () => {
       alert("Login Error: " + error.message);
     });
   } else if (authBtn.id === "logout-btn") {
+    signOut(auth)
+    .then(() => {
+      console.log("User signed out.");
+      alert("You have been logged out.");
+      updateUI(null); // Update UI after logout
+    })
+    .catch((error) => {
+      console.error("Error during logout: ", error);
+      alert("Logout Error: " + error.message);
+    });
+  }
+});
+Btn.addEventListener("click", () => {
+  if (Btn.id === "b") {
+    // Simulate user login
+    setPersistence(auth, browserSessionPersistence)
+    .then(() => signInWithPopup(auth, provider))
+    .then((result) => {
+      const user = result.user;
+      console.log("User signed in: ", user);
+      alert(`Welcome, ${user.displayName}!`);
+      updateUI(user); // Update UI after login
+    })
+    .catch((error) => {
+      console.error("Error during login: ", error);
+      alert("Login Error: " + error.message);
+    });
+  } else if (Btn.id === "l") {
     signOut(auth)
     .then(() => {
       console.log("User signed out.");
