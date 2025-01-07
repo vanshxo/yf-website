@@ -189,7 +189,7 @@
         /* Common styles for both buttons */
         button {
             /* border: none; */
-            background-image: linear-gradient(45deg, #1F54A4, #FF5281);
+            
             padding: 10px 20px;
             font-size: 16px;
             border-radius: 5px;
@@ -269,7 +269,7 @@
                 setTimeout(() => {
                     document.getElementById('loader-container').remove();  // Hide loader
                     document.getElementById('content').style.display = 'block'; // Show main content
-                }, 0);
+                }, 2800);
             })
             .catch(err => console.error('Error loading loader.html:', err));
     </script>
