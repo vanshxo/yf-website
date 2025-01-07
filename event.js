@@ -252,10 +252,11 @@ document.getElementById("pay-now-btn").onclick = async () => {
   const price = registerForm.eventPrice.value;
   const email = registerForm.userEmail.value;
   const eventId = registerForm.eventId;
+  const number=registerForm.phoneno.value;
 
   // Razorpay integration
   const options = {
-    key: "rzp_test_MbIf0zII822vJ8",
+    key: "rzp_test_GZjBgGK1sQhMLh",
     amount: price * 100,
     currency: "INR",
     name: "Youth Fest",
@@ -266,6 +267,7 @@ document.getElementById("pay-now-btn").onclick = async () => {
         await addDoc(collection(db, `events/${eventId}/registrations`), {
           email,
           paymentId: response.razorpay_payment_id,
+          phone:number,
         });
         showSuccessModal();
       } catch (error) {
